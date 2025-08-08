@@ -70,5 +70,5 @@ elif seccion == "Magnetostática":
     )
     
     if subtema == "Campo de inducción magnética":
-        mostrar_simulacion_hilos_magneticos
+        campo_magnetico_hilos()
     # Agregar más subtemas...
