@@ -3,7 +3,7 @@ from simulations.coulomb import mostrar_simulacion_coulomb
 from simulations.puntualfield import campo_electrico_carga_puntual
 from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
-from simulations.hilosmag import mostrar_simulacion_hilos_magneticos
+from simulations.hilosmag import campo_magnetico_hilos
 import os
 
 # Configuración de la página
