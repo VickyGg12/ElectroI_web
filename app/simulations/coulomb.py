@@ -77,7 +77,7 @@ def mostrar_simulacion_coulomb():
         )
     
     # Crear figura
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_xlim(-5, 5)
     ax.set_ylim(-5, 5)
     ax.set_aspect('equal')

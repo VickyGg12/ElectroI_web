@@ -1,5 +1,9 @@
 import streamlit as st
 from simulations.coulomb import mostrar_simulacion_coulomb
+from simulations.puntualfield import campo_electrico_carga_puntual
+from simulations.potencial import potencial_electrostatico
+from simulations.conductor import esfera_conductora
+from simulations.hilosmag import mostrar_simulacion_hilos_magneticos
 import os
 
 # Configuración de la página
@@ -49,5 +53,22 @@ elif seccion == "Electrostática":
     if subtema == "Ley de Coulomb":
         st.subheader("🔌 Simulación de la Ley de Coulomb")
         mostrar_simulacion_coulomb()
-        
+    
+    if subtema == "Campos y potenciales eléctricos":
+        potencial_electrostatico()
+        campo_electrico_carga_puntual()
+    
+    if subtema == "Conductores":
+        esfera_conductora()
+
+elif seccion == "Magnetostática":
+    st.header("🧲 Magnetostática")
+    subtema = st.selectbox(
+        "Selecciona un subtema:",
+        ["Ley de Biot-Savart", "Campo y fuerza magnetostáticos", "No existencia de monopolos magnéticos", 
+         "Campo de inducción magnética"]
+    )
+    
+    if subtema == "Campo de inducción magnética":
+        mostrar_simulacion_hilos_magneticos
     # Agregar más subtemas...
