@@ -29,14 +29,52 @@ def mostrar_simulacion_coulomb():
     col1, col2 = st.columns(2)
     
     with col1:
-        q1 = st.slider('Carga 1 (C):', -1e-6, 1e-6, 1e-6, 1e-7, format="%.1e")
-        x1 = st.slider('Posición 1 X (m):', -5.0, 5.0, -2.0, 0.1)
-        y1 = st.slider('Posición 1 Y (m):', -5.0, 5.0, 0.0, 0.1)
+        q1 = st.slider(
+            'Carga 1 (μC):',
+            min_value=-5.0,
+            max_value=5.0,
+            value=1.0,
+            step=0.1,  # Paso de 0.1 μC
+            format="%.1f"  # Muestra 1 decimal
+        )
+        x1 = st.slider(
+            'Posición 1 X (m):',
+            min_value=-4.5,
+            max_value=4.5,
+            value=-2.0,
+            step=0.1
+        )
+        y1 = st.slider(
+            'Posición 1 Y (m):',
+            min_value=-4.5,
+            max_value=4.5,
+            value=0.0,
+            step=0.1
+        )
     
     with col2:
-        q2 = st.slider('Carga 2 (C):', -1e-6, 1e-6, -1e-6, 1e-7, format="%.1e")
-        x2 = st.slider('Posición 2 X (m):', -5.0, 5.0, 2.0, 0.1)
-        y2 = st.slider('Posición 2 Y (m):', -5.0, 5.0, 0.0, 0.1)
+        q2 = st.slider(
+            'Carga 2 (μC):',
+            min_value=-5.0,
+            max_value=5.0,
+            value=-1.0,
+            step=0.1,
+            format="%.1f"
+        )
+        x2 = st.slider(
+            'Posición 2 X (m):',
+            min_value=-4.5,
+            max_value=4.5,
+            value=2.0,
+            step=0.1
+        )
+        y2 = st.slider(
+            'Posición 2 Y (m):',
+            min_value=-4.5,
+            max_value=4.5,
+            value=0.0,
+            step=0.1
+        )
     
     # Crear figura
     fig, ax = plt.subplots(figsize=(10, 8))
