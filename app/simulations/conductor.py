@@ -33,7 +33,7 @@ def esfera_conductora():
     fig, ax = plt.subplots(figsize=(10, 8))
     
     # Potencial
-    im = ax.pcolormesh(X, Z, V, shading='auto', cmap='nipy_espectral', alpha=0.8)
+    im = ax.pcolormesh(X, Z, V, shading='auto', cmap='nipy_spectral', alpha=0.8)
     cbar = plt.colorbar(im, label='Potencial (V)')
     
     # Líneas equipotenciales
@@ -53,6 +53,3 @@ def esfera_conductora():
     
     st.pyplot(fig)
     
-    st.markdown("""
-    ### 🔍 Observaciones:
-    """)

@@ -81,7 +81,9 @@ def mostrar_simulacion_coulomb():
     ax.set_xlim(-5, 5)
     ax.set_ylim(-5, 5)
     ax.set_aspect('equal')
-    ax.grid(True)
+    ax.grid(True, alpha=0.2)
+    ax.set_xlabel("x (m)")
+    ax.set_ylabel("y (m)")
     ax.set_title("Ley de Coulomb - Fuerza Electroestática")
     
     # Dibujar cargas
@@ -107,5 +109,9 @@ def mostrar_simulacion_coulomb():
     ax.text(pos2[0], pos2[1]-0.5, f'q₂ = {q2:.1e} C', ha='center', 
             bbox=dict(facecolor='white', alpha=0.7, pad=2))
     
+     # Mostrar magnitud de fuerza
+    ax.text(3.5, 4.5, f'F = {fuerza_mag:.2e} N', 
+            bbox=dict(facecolor='white', alpha=0.8), fontsize=12)
+
     st.pyplot(fig)
     st.markdown("</div>", unsafe_allow_html=True)

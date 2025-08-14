@@ -8,14 +8,7 @@ def potencial_electrostatico():
     
     with st.expander("📚 Teoría", expanded=True):
         st.markdown("""
-        **Potencial eléctrico de una carga puntual**:
-        ```
-        V = k·q/r
-        ```
-        Donde:
-        - $k = 8.99×10^9\ N·m²/C²$ (Constante de Coulomb)
-        - $q$: Carga [C]
-        - $r$: Distancia desde la carga [m]
+        
         """)
     
     col1, col2 = st.columns(2)
@@ -47,7 +40,7 @@ def potencial_electrostatico():
         X, Y, V, 
         levels=100, 
         cmap='viridis',
-        norm=SymLogNorm(linthresh=linthresh, linscale=1, vmin=-vmax, vmax=vmax))
+        norm=SymLogNorm(linthresh=linthresh, vmin=-vmax, vmax=vmax))
     
     # Líneas equipotenciales
     ax.contour(X, Y, V, levels=12, colors='white', alpha=0.3, linewidths=0.5)

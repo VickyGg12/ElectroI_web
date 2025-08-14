@@ -100,8 +100,9 @@ def campo_magnetico_hilos_interactivo():
                            cmap=cmap_total, norm=norm_total, scale=25, width=0.003)
         
         cbar_total = fig.colorbar(ScalarMappable(cmap=cmap_total, norm=norm_total), ax=ax,
-                                 pad=0.02, shrink=0.4, aspect=10)
-        cbar_total.set_label('$|\mathbf{B}_{total}|$ (μT)', rotation=270, labelpad=15)
+                                 orientation='horizontal', pad=0.1, shrink=0.6, aspect=30)
+        cbar_total.set_label('$|\mathbf{B}_{total}|$ (μT)', labelpad=10)
+        cbars.append(cbar_total)
 
     # Hilos y direcciones
     ax.plot(x1, y1, 'ro', markersize=12)
