@@ -10,8 +10,7 @@ def campo_electrico_carga_puntual():
     # Teoría introductoria
     with st.expander("📚 Contexto", expanded=True):
         st.markdown("""
-        Ecuaciones de campo eléctrico de una carga puntual:
-        $$ E = k \frac{q}{r^2} $$
+        
         """)
     
     # Controles interactivos
@@ -67,7 +66,7 @@ def campo_electrico_carga_puntual():
     # Flechas del campo
     quiver = ax.quiver(
         X, Y, Ex_norm, Ey_norm, E_magnitude,
-        cmap='viridis',
+        cmap='nipy_spectral',
         norm=norm,
         scale=30,
         width=0.003,

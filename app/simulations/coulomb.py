@@ -7,7 +7,7 @@ def calcular_fuerza(q1, q2, pos1, pos2):
     r = pos2 - pos1
     distancia = np.linalg.norm(r)
     if distancia == 0:
-        return np.zeros(2)
+        return np.zeros(2), 0.0  # Devuelve también la magnitud
 
     fuerza_mag = k * np.abs(q1 * q2) / (distancia ** 2)
     fuerza_direc = r / distancia
@@ -17,7 +17,7 @@ def calcular_fuerza(q1, q2, pos1, pos2):
     else:             # Atracción
         fuerza_direc = fuerza_direc
 
-    return fuerza_mag * fuerza_direc * 1e-11  # Escala para visualización
+    return fuerza_mag * fuerza_direc * 1e-11, fuerza_mag  # Escala para visualización
 
 def mostrar_simulacion_coulomb():
     st.markdown("""
@@ -34,8 +34,8 @@ def mostrar_simulacion_coulomb():
             min_value=-5.0,
             max_value=5.0,
             value=1.0,
-            step=0.1,  # Paso de 0.1 μC
-            format="%.1f"  # Muestra 1 decimal
+            step=0.1,
+            format="%.1f"
         )
         x1 = st.slider(
             'Posición 1 X (m):',
@@ -81,7 +81,9 @@ def mostrar_simulacion_coulomb():
     ax.set_xlim(-5, 5)
     ax.set_ylim(-5, 5)
     ax.set_aspect('equal')
-    ax.grid(True)
+    ax.grid(True, alpha=0.2)
+    ax.set_xlabel("x (m)")
+    ax.set_ylabel("y (m)")
     ax.set_title("Ley de Coulomb - Fuerza Electroestática")
     
     # Dibujar cargas
@@ -93,7 +95,7 @@ def mostrar_simulacion_coulomb():
     # Calcular y dibujar fuerzas
     pos1 = np.array([x1, y1])
     pos2 = np.array([x2, y2])
-    fuerza = calcular_fuerza(q1, q2, pos1, pos2)
+    fuerza, fuerza_mag = calcular_fuerza(q1, q2, pos1, pos2)  # Ahora recibe ambos valores
     
     if np.any(fuerza):
         ax.arrow(pos1[0], pos1[1], fuerza[0], fuerza[1], 
@@ -102,10 +104,14 @@ def mostrar_simulacion_coulomb():
                  head_width=0.3, head_length=0.5, fc='darkgreen', ec='darkgreen')
     
     # Etiquetas
-    ax.text(pos1[0], pos1[1]-0.5, f'q₁ = {q1:.1e} C', ha='center', 
+    ax.text(pos1[0], pos1[1]-0.5, f'q₁ = {q1:.1f} μC', ha='center', 
             bbox=dict(facecolor='white', alpha=0.7, pad=2))
-    ax.text(pos2[0], pos2[1]-0.5, f'q₂ = {q2:.1e} C', ha='center', 
+    ax.text(pos2[0], pos2[1]-0.5, f'q₂ = {q2:.1f} μC', ha='center', 
             bbox=dict(facecolor='white', alpha=0.7, pad=2))
     
+    # Mostrar magnitud de fuerza (corregido)
+    ax.text(3.5, 4.5, f'F = {fuerza_mag:.2e} N', 
+            bbox=dict(facecolor='white', alpha=0.8), fontsize=12)
+
     st.pyplot(fig)
     st.markdown("</div>", unsafe_allow_html=True)
