@@ -4,7 +4,7 @@ from simulations.puntualfield import campo_electrico_carga_puntual
 from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
 #from simulations.hilosmag import campo_magnetico_hilos_interactivo
-from simulations.BiotSavart import biot_savart_3d
+#from simulations.BiotSavart import biot_savart_3d
 import os
 
 # Configuración de la página
@@ -73,6 +73,6 @@ elif seccion == "Magnetostática":
     #if subtema == "Ley de Biot-Savart":
      #   st.subheader("🔄 Ley de Biot-Savart en 3D")
       #  biot_savart_3d()
-    if subtema == "Campo de inducción magnética":
-        campo_magnetico_hilos_interactivo()
+    #if subtema == "Campo de inducción magnética":
+     #   campo_magnetico_hilos_interactivo()
     # Agregar más subtemas...
