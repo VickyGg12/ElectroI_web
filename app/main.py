@@ -1,5 +1,5 @@
 import streamlit as st
-from simulations.coulomb import mostrar_simulacion_coulomb
+# from simulations.coulomb import mostrar_simulacion_coulomb
 from simulations.puntualfield import campo_electrico_carga_puntual
 from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
@@ -51,9 +51,9 @@ elif seccion == "Electrostática":
          "Energía electrostática", "Desarrollo multipolar"]
     )
     
-    if subtema == "Ley de Coulomb":
-        st.subheader("🔌 Simulación de la Ley de Coulomb")
-        mostrar_simulacion_coulomb()
+    #if subtema == "Ley de Coulomb":
+     #   st.subheader("🔌 Simulación de la Ley de Coulomb")
+      #  mostrar_simulacion_coulomb()
     
     if subtema == "Campos y potenciales eléctricos":
         potencial_electrostatico()
