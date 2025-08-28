@@ -75,5 +75,4 @@ elif seccion == "Magnetostática":
         biot_savart_3d()
     if subtema == "Campo de inducción magnética":
         campo_magnetico_hilos_interactivo()
-
-agregar más secciones según sea necesario... # type: ignore
+        # Aquí puedes agregar más simulaciones o contenido relacionado
