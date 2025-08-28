@@ -70,14 +70,10 @@ def campo_magnetico_hilos_interactivo():
     # Visualización
     fig, ax = plt.subplots(figsize=(10, 8))
 
-<<<<<<< HEAD
     # Lista para almacenar las barras de color (corregido)
     colorbars = []
 
     # Campos individuales
-=======
-    # Campos individuales (copper y winter_r)
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
     if show_individual:
         cmap1 = plt.cm.copper
         cmap2 = plt.cm.winter_r
@@ -90,7 +86,6 @@ def campo_magnetico_hilos_interactivo():
         q2 = ax.quiver(X, Y, B2x_norm, B2y_norm, B2_mag,
                       cmap=cmap2, norm=norm2, scale=25, width=0.003, alpha=0.6)
         
-<<<<<<< HEAD
         # Barras de color (corregido)
 =======
         # Barras de color
@@ -106,10 +101,6 @@ def campo_magnetico_hilos_interactivo():
         colorbars.extend([cbar1, cbar2])
 
     # Campo total
-=======
-
-    # Campo total (spring)
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
     if show_total:
         cmap_total = plt.cm.spring
         norm_total = Normalize(vmin=0, vmax=B_total_mag.max())
@@ -120,7 +111,6 @@ def campo_magnetico_hilos_interactivo():
         cbar_total = fig.colorbar(ScalarMappable(cmap=cmap_total, norm=norm_total), ax=ax,
                                  orientation='horizontal', pad=0.1, shrink=0.6, aspect=30)
         cbar_total.set_label('$|\mathbf{B}_{total}|$ (μT)', labelpad=10)
-<<<<<<< HEAD
         colorbars.append(cbar_total)
 =======
         cbars.append(cbar_total)

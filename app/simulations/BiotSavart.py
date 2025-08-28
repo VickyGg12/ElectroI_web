@@ -7,8 +7,6 @@ from matplotlib.lines import Line2D
 
 def biot_savart_3d():
     st.title("🧭 Visualización 3D: Ley de Biot-Savart")
-    
-<<<<<<< HEAD
     # Sección histórica - FIEL AL ORIGINAL
     with st.expander("📚 Contexto Histórico (1820-1825)", expanded=True):
         st.markdown("""
@@ -64,40 +62,6 @@ def biot_savart_3d():
         ax_timeline.set_xlim(1819, 1826)
         ax_timeline.set_ylim(-5, 3)
         ax_timeline.grid(True, axis='x', linestyle='--', alpha=0.5)
-=======
-    # Sección histórica
-    with st.expander("📚 Contexto Histórico (1820-1825)", expanded=True):
-        st.markdown("""
-        ### Línea de tiempo del descubrimiento:
-        """)
-        
-        # Crear gráfico de línea de tiempo
-        fig_timeline, ax_timeline = plt.subplots(figsize=(10, 4))
-        
-        years = np.array([1820, 1821, 1823, 1824, 1825])
-        events = [
-            "Ørsted descubre efecto EM\n(aguja se mueve cerca de corriente)",
-            "Ampère formula\nley de fuerza entre corrientes",
-            "Biot & Savart miden\ncampo magnético",
-            "Laplace sugiere\nformulación matemática",
-            "Ley de Biot-Savart\nes publicada"
-        ]
-        
-        ax_timeline.plot(years, np.zeros_like(years), 'k-o', markersize=8)
-        
-        for year, event in zip(years, events):
-            y_offset = 0.5 if year % 2 == 0 else -0.5
-            ax_timeline.annotate(event, xy=(year, 0), xytext=(0, 30*y_offset),
-                               textcoords='offset points', ha='center',
-                               bbox=dict(boxstyle='round', fc='w', alpha=0.8),
-                               arrowprops=dict(arrowstyle="->"))
-        
-        # Configuración
-        ax_timeline.set_title("Desarrollo Histórico de la Ley de Biot-Savart")
-        ax_timeline.set_xlim(1819, 1826)
-        ax_timeline.set_ylim(-1, 1)
-        ax_timeline.axis('off')
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
         plt.tight_layout()
         
         st.pyplot(fig_timeline)
@@ -107,7 +71,6 @@ def biot_savart_3d():
     with col1:
         I = st.slider("Corriente (A)", 0.1, 5.0, 1.0, 0.1)
     with col2:
-<<<<<<< HEAD
         wire_length = st.slider("Longitud cable (m)", 5, 20, 10, 1)
     
     # Constantes
