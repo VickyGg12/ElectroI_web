@@ -109,11 +109,7 @@ def mostrar_simulacion_coulomb():
     ax.text(pos2[0], pos2[1]-0.5, f'q₂ = {q2:.1f} μC', ha='center', 
             bbox=dict(facecolor='white', alpha=0.7, pad=2))
     
-<<<<<<< HEAD
-    # Mostrar magnitud de fuerza (corregido)
-=======
-     # Mostrar magnitud de fuerza
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
+    # Mostrar magnitud de fuerza 
     ax.text(3.5, 4.5, f'F = {fuerza_mag:.2e} N', 
             bbox=dict(facecolor='white', alpha=0.8), fontsize=12)
 

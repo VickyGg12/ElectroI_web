@@ -87,16 +87,12 @@ def campo_magnetico_hilos_interactivo():
                       cmap=cmap2, norm=norm2, scale=25, width=0.003, alpha=0.6)
         
         # Barras de color (corregido)
-=======
-        # Barras de color
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
         cbar1 = fig.colorbar(ScalarMappable(cmap=cmap1, norm=norm1), ax=ax, 
                             pad=0.02, shrink=0.4, aspect=10, location='left')
         cbar1.set_label('$|\mathbf{B}_1|$ (μT)', rotation=90)
         cbar2 = fig.colorbar(ScalarMappable(cmap=cmap2, norm=norm2), ax=ax, 
                             pad=0.02, shrink=0.4, aspect=10, location='right')
         cbar2.set_label('$|\mathbf{B}_2|$ (μT)', rotation=90)
-<<<<<<< HEAD
         
         colorbars.extend([cbar1, cbar2])
 
@@ -112,9 +108,6 @@ def campo_magnetico_hilos_interactivo():
                                  orientation='horizontal', pad=0.1, shrink=0.6, aspect=30)
         cbar_total.set_label('$|\mathbf{B}_{total}|$ (μT)', labelpad=10)
         colorbars.append(cbar_total)
-=======
-        cbars.append(cbar_total)
->>>>>>> 421c61967f6d74fc8ef8f48ec351e9f4c23edd45
 
     # Hilos y direcciones
     ax.plot(x1, y1, 'ro', markersize=12)
