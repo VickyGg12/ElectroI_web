@@ -1,6 +1,6 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import streamlit as st
+import numpy as np # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+import streamlit as st # type: ignore
 
 def calcular_fuerza(q1, q2, pos1, pos2):
     k = 8.9875e9  # Constante de Coulomb (N·m²/C²)

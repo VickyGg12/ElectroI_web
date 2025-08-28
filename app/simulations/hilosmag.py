@@ -1,8 +1,8 @@
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.colors import Normalize
-from matplotlib.cm import ScalarMappable
+import streamlit as st # type: ignore
+import numpy as np # pyright: ignore[reportMissingImports]
+import matplotlib.pyplot as plt # type: ignore
+from matplotlib.colors import Normalize # type: ignore
+from matplotlib.cm import ScalarMappable # type: ignore
 
 def campo_magnetico_hilos_interactivo():
     st.title("🧲 Simulador Interactivo: Campos Magnéticos de dos Hilos de corriente")

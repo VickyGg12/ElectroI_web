@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st # type: ignore
 from simulations.coulomb import mostrar_simulacion_coulomb
 from simulations.puntualfield import campo_electrico_carga_puntual
 from simulations.potencial import potencial_electrostatico
@@ -76,4 +76,4 @@ elif seccion == "Magnetostática":
     if subtema == "Campo de inducción magnética":
         campo_magnetico_hilos_interactivo()
 
-agregar más secciones según sea necesario...
+agregar más secciones según sea necesario... # type: ignore

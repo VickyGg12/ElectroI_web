@@ -1,9 +1,9 @@
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.patches import Circle
-from matplotlib.lines import Line2D
+import streamlit as st # type: ignore
+import numpy as np # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+from mpl_toolkits.mplot3d import Axes3D # type: ignore
+from matplotlib.patches import Circle # type: ignore
+from matplotlib.lines import Line2D # type: ignore
 
 def biot_savart_3d():
     st.title("🧭 Visualización 3D: Ley de Biot-Savart")
