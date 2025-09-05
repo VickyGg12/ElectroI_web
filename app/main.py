@@ -5,7 +5,6 @@ from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
 from simulations.hilosmag import campo_magnetico_hilos_interactivo
 from simulations.BiotSavart import biot_savart_3d
-import os
 
 # Configuración de la página
 st.set_page_config(
@@ -37,6 +36,10 @@ if seccion == "Inicio":
     st.header("🌟 Bienvenido al Portal de Electromagnetismo")
     st.markdown("""
     <div class="welcome-box">
+        Por: Victoria Guevara González
+            Asesor: Dr. Mauricio García Vergara
+            Asesora: Dra. Mirna Villavicencio Torres
+        <br><br>
         Este sitio contiene material didáctico interactivo para el estudio del electromagnetismo a nivel licenciatura.
         <br><br>
         Utiliza el menú lateral para navegar entre los diferentes temas.
@@ -75,4 +78,4 @@ elif seccion == "Magnetostática":
         biot_savart_3d()
     if subtema == "Campo de inducción magnética":
         campo_magnetico_hilos_interactivo()
-        # Aquí puedes agregar más simulaciones o contenido relacionado
+        # Aquí se pueden agregar más simulaciones o contenido relacionado
