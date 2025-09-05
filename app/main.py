@@ -160,21 +160,27 @@ if seccion == "Inicio":
     st.markdown("---")
     
     # Información principal
-    st.markdown(f'''
-    <div class="welcome-box">
-        <h3>📚 Acerca de este Proyecto</h3>
-        <p>Este portal contiene material didáctico interactivo para el estudio del electromagnetismo 
-        a nivel licenciatura. Las simulaciones permiten visualizar conceptos fundamentales de 
-        manera dinámica e interactiva.</p>
-        
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                   padding: 25px; border-radius: 12px; color: white; margin: 25px 0;">
-            <h4 style="color: white; margin-bottom: 15px;">👥 Equipo de Desarrollo</h4>
-            <p><strong>🧑‍💻 Desarrolladora:</strong> Victoria González</p>
-            <p><strong>👨‍🏫 Asesores:</strong> Dr. Mauricio García Vergara, Dra. Mirna Villavicencio Torres</p>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
+    with st.container():
+        st.markdown(
+        """
+        <style>
+        .team-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            margin: 25px 0;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+        )
+    
+        st.markdown('<div class="team-box">', unsafe_allow_html=True)
+        st.subheader("👥 Equipo de Desarrollo")
+        st.markdown("**🧑‍💻 Desarrolladora:** Victoria González")
+        st.markdown("**👨‍🏫 Asesores:** Dr. Mauricio García Vergara, Dra. Mirna Villavicencio Torres")
+        st.markdown('</div>', unsafe_allow_html=True)
     
     # Sección de cómo usar la plataforma
     st.markdown("---")
