@@ -72,7 +72,7 @@ def load_css():
     
     /* Estilos para encabezados */
     h1, h2, h3 {
-        color: #003366 !important;
+        color: #2c5282 !important;
     }
     
     h4, h5 {
@@ -167,9 +167,9 @@ if seccion == "Inicio":
         a nivel licenciatura. Las simulaciones permiten visualizar conceptos fundamentales de 
         manera dinámica e interactiva.</p>
         
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                   padding: 25px; border-radius: 12px; color: white; margin: 25px 0;">
-            <h4 style="color: white; margin-bottom: 15px;">👥 Equipo de Desarrollo</h4>
+        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                   padding: 25px; border-radius: 12px; color: white; margin: 25px 0;'>
+            <h4 style='color: white; margin-bottom: 15px;'>👥 Equipo de Desarrollo</h4>
             <p><strong>🧑‍💻 Desarrolladora:</strong> Victoria González</p>
             <p><strong>👨‍🏫 Asesores:</strong> Dr. Mauricio García Vergara, Dra. Mirna Villavicencio Torres</p>
         </div>
