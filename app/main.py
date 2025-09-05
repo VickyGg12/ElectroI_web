@@ -5,7 +5,6 @@ from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
 from simulations.hilosmag import campo_magnetico_hilos_interactivo
 from simulations.BiotSavart import biot_savart_3d
-import os
 
 # Configuración de la página
 st.set_page_config(
