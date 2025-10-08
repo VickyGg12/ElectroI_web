@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
-def simular_circuito_rlc_latex():
+def simular_circuito_rlc():
     st.title("⚡ Simulación de Circuito RLC Serie")
     
     with st.sidebar:
@@ -175,4 +175,4 @@ def simular_circuito_rlc_latex():
         """)
 
 # Llamar la función
-simular_circuito_rlc_latex()
+simular_circuito_rlc()
