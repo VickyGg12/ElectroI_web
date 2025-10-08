@@ -117,7 +117,6 @@ def simular_fibra_optica_3d():
     ax.set_xlabel('X (μm)', labelpad=15)
     ax.set_ylabel('Y (μm)', labelpad=15)
     ax.set_zlabel('Z (μm) - Dirección de propagación', labelpad=15)
-    ax.set_title('Simulación 3D de Fibra Óptica - Reflexión Total Interna', pad=25)
     
     limit = radio_nucleo * 2
     ax.set_xlim([-limit, limit])

@@ -91,7 +91,7 @@ def biot_savart_3d():
     wire_x = np.zeros_like(wire_z)
     wire_y = np.zeros_like(wire_z)
     
-    ax_3d.plot(wire_x, wire_y, wire_z, 'b-', linewidth=3, label='Current-carrying wire')
+    ax_3d.plot(wire_x, wire_y, wire_z, 'b-', linewidth=3, label='Cable conductor')
     
     # Dirección de la corriente (FIEL AL ORIGINAL)
     ax_3d.quiver(0, 0, wire_length/2-1, 0, 0, 2, color='blue',
@@ -136,9 +136,8 @@ def biot_savart_3d():
             B_total = (B_total / nano) * np.log1p(B_mag/nano)
         return B_total
     
-    # Calcular campo en todos los puntos
+    # Calcular campo en todos los puntos (SOLO para los puntos de observación)
     B_fields = np.array([calculate_B(p) for p in obs_points])
-    B_needle = calculate_B(needle_pos)
     
     # Dibujar líneas de campo (FIEL AL ORIGINAL)
     ax_3d.quiver(obs_points[:,0], obs_points[:,1], obs_points[:,2],
@@ -154,7 +153,7 @@ def biot_savart_3d():
     ax_3d.set_ylabel('Y (m)')
     ax_3d.set_zlabel('Z (m)')
     
-    # Leyenda mejorada (FIEL AL ORIGINAL)
+    # Leyenda mejorada (SIN la aguja magnética)
     legend_elements = [
         Line2D([0], [0], color='blue', lw=3, label='Cable conductor (corriente I)'),
         Line2D([0], [0], marker='>', color='blue', lw=0, label='Dirección de la corriente', markersize=10),
@@ -164,3 +163,15 @@ def biot_savart_3d():
     
     plt.tight_layout()
     st.pyplot(fig_3d)
+    
+    # Explicación adicional
+    st.markdown("""
+    ### 📝 Interpretación:
+    - **Cable azul**: Conductor rectilíneo con corriente $I$.
+    - **Flechas rojas**: Dirección y sentido del campo magnético $\mathbf{B}$.
+    - La intensidad del campo disminuye con la distancia al cable (ley inversa).
+    - Las líneas de campo forman círculos concéntricos alrededor del cable.
+    """)
+
+# Llamar la función
+biot_savart_3d()

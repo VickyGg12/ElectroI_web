@@ -215,7 +215,8 @@ elif seccion == "Electrostática":
     st.header("⚡ Electrostática")
     subtema = st.selectbox(
         "Selecciona un subtema:",
-        ["Ley de Coulomb", "Campos y potenciales eléctricos", "Conductores", 
+        ["Ley de Coulomb", "Campos y potenciales eléctricos", "Conductores",
+         "Torque sobre una distribución de carga", 
          "Energía electrostática", "Desarrollo multipolar"]
     )
     
