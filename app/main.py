@@ -9,7 +9,7 @@ from simulations.torquedip import simular_anillo_campo_electrico
 from simulations.NoMonop import simular_campo_magnetico_bucle
 from simulations.FibraOp import simular_fibra_optica_3d
 from simulations.GuiaOnda import simular_guia_onda_mejorada
-from simultions.RLC import simular_circuito_RLC
+from simulations.RLC import simular_circuito_rlc
 
 # Configuración de la página
 st.set_page_config(
@@ -288,7 +288,7 @@ elif seccion == "Circuitos Eléctricos":
     
     if subtema == "Circuitos RL, RC y RLC":
         st.subheader(" Simulación de Circuito RLC")
-        simular_circuito_RLC()
+        simular_circuito_rlc()
 
     elif subtema == "Leyes de Kirchhoff":
         st.info("🚧 Simulación en desarrollo - Próximamente")
