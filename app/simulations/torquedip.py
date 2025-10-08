@@ -103,25 +103,6 @@ def simular_anillo_campo_electrico():
             bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'))
 
     st.pyplot(fig)
-    
-    # Explicación física
-    with st.expander("📚 Explicación Física", expanded=True):
-        st.markdown(f"""
-        ### Física del Sistema:
-        
-        - **Distribución de carga**: λ(φ) = λ₀·sin(φ) - distribución sinusoidal alrededor del anillo
-        - **Momento dipolar**: p⃗ = πλ₀R² ŷ = {p_y:.4f} C·m
-        - **Torque**: τ⃗ = p⃗ × E⃗ = {tau_z:.4f} N·m en dirección z
-        - **Radio del anillo**: R = {R} m
-        
-        ### Ecuaciones clave:
-        ```
-        p_y = π·λ₀·R²
-        τ_z = -p_y·E₀
-        ```
-        
-        El torque hace que el anillo tienda a alinearse con el campo eléctrico externo.
-        """)
 
 # Llamar la función
 simular_anillo_campo_electrico()
