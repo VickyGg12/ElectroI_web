@@ -173,5 +173,3 @@ def biot_savart_3d():
     - Las líneas de campo forman círculos concéntricos alrededor del cable.
     """)
 
-# Llamar la función
-biot_savart_3d()

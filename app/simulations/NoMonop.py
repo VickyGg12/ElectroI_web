@@ -176,5 +176,3 @@ def simular_campo_magnetico_bucle():
         - **Simetría axial**: Campo simétrico alrededor del eje Z
         """)
 
-# Llamar la función
-simular_campo_magnetico_bucle()

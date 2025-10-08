@@ -103,6 +103,3 @@ def simular_anillo_campo_electrico():
             bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'))
 
     st.pyplot(fig)
-
-# Llamar la función
-simular_anillo_campo_electrico()

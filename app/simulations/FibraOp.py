@@ -172,5 +172,3 @@ def simular_fibra_optica_3d():
         **Resultado**: {'✅ CONFINAMIENTO DEL RAYO' if angulo_incidencia > angulo_critico else '❌ PÉRDIDA POR REFRACCIÓN'}
         """)
 
-# Llamar la función
-simular_fibra_optica_3d()

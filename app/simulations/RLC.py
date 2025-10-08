@@ -221,5 +221,3 @@ def simular_circuito_rlc():
         - **Potencia disipada**: $P_R = Ri^2$
         """)
 
-# Llamar la función
-simular_circuito_rlc()

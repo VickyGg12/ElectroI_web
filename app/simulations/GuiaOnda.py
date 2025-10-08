@@ -143,6 +143,3 @@ def simular_guia_onda_mejorada():
         - Campo eléctrico tiene componente longitudinal
         - H₂ = 0, E₂ ≠ 0
         """)
-
-# Llamar la función
-simular_guia_onda_mejorada()
