@@ -5,6 +5,11 @@ from simulations.potencial import potencial_electrostatico
 from simulations.conductor import esfera_conductora
 from simulations.hilosmag import campo_magnetico_hilos_interactivo
 from simulations.BiotSavart import biot_savart_3d
+from simulations.torquedip import simular_anillo_campo_electrico
+from simulations.NoMonop import simular_campo_magnetico_bucle
+from simulations.FibraOp import simular_fibra_optica_3d
+from simulations.GuiaOnda import simular_guia_onda_mejorada
+from simultions.RLC import simular_circuito_RLC
 
 # Configuración de la página
 st.set_page_config(
@@ -229,6 +234,10 @@ elif seccion == "Electrostática":
         st.subheader("🔗 Esfera Conductora")
         esfera_conductora()
     
+    elif subtema == "Torque sobre una distribución de carga":
+        st.info("Anillo con distribución de carga λ(φ)=λ₀·sin(φ)")
+        simular_anillo_campo_electrico()
+    
     elif subtema == "Energía electrostática":
         st.info("🚧 Simulación en desarrollo - Próximamente")
     
@@ -239,7 +248,7 @@ elif seccion == "Magnetostática":
     st.header("🧲 Magnetostática")
     subtema = st.selectbox(
         "Selecciona un subtema:",
-        ["Ley de Biot-Savart", "Campo y fuerza magnetostáticos", "No existencia de monopolos magnéticos", 
+        ["Ley de Biot-Savart", "No existencia de monopolos magnéticos", 
          "Campo de inducción magnética"]
     )
     
@@ -251,26 +260,38 @@ elif seccion == "Magnetostática":
         st.subheader("🧵 Campo Magnético de Hilos Paralelos")
         campo_magnetico_hilos_interactivo()
     
-    elif subtema == "Campo y fuerza magnetostáticos":
-        st.info("🚧 Simulación en desarrollo - Próximamente")
-    
     elif subtema == "No existencia de monopolos magnéticos":
-        st.info("🚧 Simulación en desarrollo - Próximamente")
+        st.info("🧲 Campo Magnético de un Bucle de Corriente")
+        simular_campo_magnetico_bucle()
 
 elif seccion == "Ondas Electromagnéticas":
     st.header("🌊 Ondas Electromagnéticas")
-    st.info("🚧 Sección en desarrollo - Próximamente")
-    st.write("""
-    Esta sección incluirá conceptos relacionados con las ondas electromagnéticas para ayudar a entender su comportamiento y aplicaciones
-             en áreas como la comunicación y la óptica.
-    """)
+    subtema = st.selectbox(
+        "Selecciona un subtema:",
+        ["Fibra óptica", "Guías de onda"]
+    )
+    
+    if subtema == "Fibra óptica":
+        st.subheader("〽️ Reflexión total interna para una fibra óptica")
+        simular_fibra_optica_3d()
+
+    elif subtema == "Guías de onda":
+        st.subheader("📡 Guía de onda en TM y TE")
+        simular_guia_onda_mejorada()
 
 elif seccion == "Circuitos Eléctricos":
     st.header("🔌 Circuitos Eléctricos")
-    st.info("🚧 Sección en desarrollo - Próximamente")
-    st.write("""
-    Próximamente temas relacionados con circuitos eléctricos, incluyendo:
-    - Leyes de Kirchhoff
-    - Circuitos RL, RC, RLC
-    - Teoremas de Thevenin y Norton
-    """)
+    subtema = st.selectbox(
+        "Selecciona un subtema:",
+        ["Circuitos RL, RC y RLC", "Leyes de Kirchhoff", "Teoremas de Thevenin y Norton"]
+    )
+    
+    if subtema == "Circuitos RL, RC y RLC":
+        st.subheader(" Simulación de Circuito RLC")
+        simular_circuito_RLC()
+
+    elif subtema == "Leyes de Kirchhoff":
+        st.info("🚧 Simulación en desarrollo - Próximamente")
+    
+    elif subtema == "Teoremas de Thevenin y Norton":
+        st.info("🚧 Simulación en desarrollo - Próximamente")

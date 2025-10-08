@@ -111,10 +111,6 @@ def biot_savart_3d():
     # Marcar estos puntos en el gráfico
     obs_points = np.vstack([obs_x.ravel(), obs_y.ravel(), obs_z.ravel()]).T
     
-    # Parámetros de la aguja (FIEL AL ORIGINAL)
-    needle_pos = np.array([2.5, 2.5, 0])
-    needle_length = 1.5
-    
     # Función para calcular campo B (FIEL AL ORIGINAL)
     def calculate_B(point, max_segment=None):
         if max_segment is None:
@@ -149,29 +145,6 @@ def biot_savart_3d():
                  B_fields[:,0], B_fields[:,1], B_fields[:,2],
                  length=0.5, normalize=True, color='r', alpha=0.6)
     
-    # Orientación de la brújula (FIEL AL ORIGINAL)
-    if np.linalg.norm(B_needle) > 0:
-        B_dir = B_needle/np.linalg.norm(B_needle)
-    else:
-        B_dir = np.array([1, 0, 0])
-    
-    needle_north = needle_pos + needle_length/2 * B_dir
-    needle_south = needle_pos - needle_length/2 * B_dir
-    
-    # Dibujar la aguja (FIEL AL ORIGINAL)
-    ax_3d.plot([needle_south[0], needle_north[0]],
-               [needle_south[1], needle_north[1]],
-               [needle_south[2], needle_north[2]],
-               'g-', linewidth=4, label='Magnetic needle')
-    
-    # Crear base de la brújula (FIEL AL ORIGINAL)
-    theta_circle = np.linspace(0, 2*np.pi, 100)
-    compass_radius = 0.8
-    x_circle = needle_pos[0] + compass_radius * np.cos(theta_circle)
-    y_circle = needle_pos[1] + compass_radius * np.sin(theta_circle)
-    z_circle = needle_pos[2] * np.ones_like(theta_circle)
-    ax_3d.plot(x_circle, y_circle, z_circle, 'k-', linewidth=2, alpha=0.7)
-    
     # Configuración del gráfico (FIEL AL ORIGINAL)
     ax_3d.set_box_aspect([1, 1, 1])
     ax_3d.set_xlim(-4, 4)
@@ -185,18 +158,9 @@ def biot_savart_3d():
     legend_elements = [
         Line2D([0], [0], color='blue', lw=3, label='Cable conductor (corriente I)'),
         Line2D([0], [0], marker='>', color='blue', lw=0, label='Dirección de la corriente', markersize=10),
-        Line2D([0], [0], color='red', lw=2, label='Campo magnético (B)'),
-        Line2D([0], [0], color='green', lw=4, label='Aguja magnética')
+        Line2D([0], [0], color='red', lw=2, label='Campo magnético (B)')
     ]
     ax_3d.legend(handles=legend_elements, loc='upper right')
     
     plt.tight_layout()
     st.pyplot(fig_3d)
-    
-    # Explicación adicional
-    st.markdown("""
-    ### 📝 Interpretación:
-    - **Cable azul**: Conductor rectilíneo con corriente $I$.
-    - **Flechas rojas**: Dirección y sentido del campo magnético $\mathbf{B}$.
-    - **Aguja verde**: Brújula que se alinea con el campo magnético.
-    """)
