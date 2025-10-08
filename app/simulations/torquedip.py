@@ -28,17 +28,13 @@ class Arrow3D(FancyArrowPatch):
         return np.min(zs)
 
 def simular_anillo_campo_electrico():
-    st.title("🧲 Torque sobre un Anillo con Densidad de Carga No Uniforme")
+    st.title("🧲 Anillo con Distribución de Carga en Campo Eléctrico")
     
     with st.sidebar:
         st.header("Configuración de Parámetros")
-        R = st.slider("Radio del anillo R (m)", 0.05, 0.5, 0.1, 0.01)
-        lambda0 = st.slider("Amplitud densidad de carga λ₀ (C/m)", 0.1, 5.0, 1.0, 0.1)
-        E0 = st.slider("Campo eléctrico externo E₀ (N/C)", 0.1, 2.0, 0.5, 0.1)
-    
-    # Cálculos físicos
-    p_y = np.pi * lambda0 * R**2  # Momento dipolar
-    tau_z = -p_y * E0  # Torque
+        R = st.slider("Radio del anillo (m)", 0.05, 0.5, 0.1, 0.01)
+        lambda0 = st.slider("Amplitud densidad de carga λ₀", 0.1, 5.0, 1.0, 0.1)
+        E0 = st.slider("Campo eléctrico externo (N/C)", 0.1, 2.0, 0.5, 0.1)
     
     # Crear el anillo
     phi = np.linspace(0, 2*np.pi, 100)
@@ -46,6 +42,10 @@ def simular_anillo_campo_electrico():
     y_ring = R * np.sin(phi)
     z_ring = np.zeros_like(phi)
     lambda_phi = lambda0 * np.sin(phi)
+
+    # Cálculos físicos
+    p_y = np.pi * lambda0 * R**2  # Momento dipolar
+    tau_z = -p_y * E0  # Torque
 
     def add_arrow(ax, x, y, z, dx, dy, dz, label=None, mag=None, color='k', normalize=True, arrow_scale=1.0):
         if normalize:
@@ -58,31 +58,28 @@ def simular_anillo_campo_electrico():
             ax.text(x + dx, y + dy, z + dz, f"{label}\n{mag:.4f}", color=color, fontsize=9)
 
     # Gráfico 3D
-    fig = plt.figure(figsize=(14, 10))
+    fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
 
     # Dibujar anillo con colores según densidad de carga
-    sc = ax.scatter(x_ring, y_ring, z_ring, c=lambda_phi, cmap='bwr', alpha=0.9, s=30)
+    sc = ax.scatter(x_ring, y_ring, z_ring, c=lambda_phi, cmap='bwr', alpha=0.9, s=20)
     cbar = fig.colorbar(sc, ax=ax, shrink=0.7, label='Densidad de carga λ(φ) [C/m]')
-    cbar.ax.axhline(0, color='black', linestyle='--', alpha=0.5)
 
-    # Campo eléctrico uniforme (flechas verdes)
+    # Campo eléctrico uniforme
     for y in np.linspace(-1.5*0.5, 1.5*0.5, 5):
         for z in np.linspace(-1.5*0.5, 1.5*0.5, 5):
             add_arrow(ax, -2*0.5, y, z, 2*0.5, 0, 0, color='#90EE90', normalize=True, arrow_scale=1)
 
-    # Vectores físicos
-    add_arrow(ax, 0, 0, 0, 0, p_y, 0, label='p⃗', mag=p_y, color='red', normalize=True, arrow_scale=3.0)
-    add_arrow(ax, 0, 0, 0, 0, 0, tau_z, label='τ⃗', mag=abs(tau_z), color='magenta', normalize=True, arrow_scale=3.0)
+    # Vectores de momento dipolar y torque
+    add_arrow(ax, 0, 0, 0, 0, p_y, 0, label='p', mag=p_y, color='red', normalize=True, arrow_scale=3.0)
+    add_arrow(ax, 0, 0, 0, 0, 0, tau_z, label='τ', mag=abs(tau_z), color='magenta', normalize=True, arrow_scale=3.0)
 
     # Leyenda
     from matplotlib.lines import Line2D
     legend_elements = [
-        Line2D([0], [0], color='#90EE90', lw=2, label='Campo eléctrico E⃗'),
-        Line2D([0], [0], color='red', lw=2, label='Momento dipolar p⃗'),
-        Line2D([0], [0], color='magenta', lw=2, label='Torque τ⃗'),
-        Line2D([0], [0], color='blue', marker='o', lw=0, markersize=8, label='λ(φ) > 0'),
-        Line2D([0], [0], color='red', marker='o', lw=0, markersize=8, label='λ(φ) < 0')
+        Line2D([0], [0], color='#90EE90', lw=2, label='Campo eléctrico (E)'),
+        Line2D([0], [0], color='red', lw=2, label='Momento dipolar (p)'),
+        Line2D([0], [0], color='magenta', lw=2, label='Torque (τ)')
     ]
     ax.legend(handles=legend_elements, loc='upper right')
 
@@ -96,7 +93,7 @@ def simular_anillo_campo_electrico():
     ax.set_title('Anillo con λ(φ)=λ₀sin(φ) en campo E externo\n' + r'$\vec{\tau} = \vec{p} \times \vec{E}$', fontsize=14)
     ax.grid(True, alpha=0.2)
 
-    # Información física en el gráfico
+    # Información física
     ax.text(-1, -1, 1.4,
             r'Magnitudes:' + '\n' +
             r'$|\vec{E}| = %.1f$ N/C' % E0 + '\n' +
@@ -107,75 +104,24 @@ def simular_anillo_campo_electrico():
 
     st.pyplot(fig)
     
-    # Desarrollo matemático
-    st.markdown("""
-    ## **Torque sobre un anillo con densidad de carga no uniforme**
-
-    ### **Definición de la distribución de carga**
-
-    La densidad de carga lineal se define como una distribución sobre el espacio de funciones test $\\varphi \\in C^\\infty_c(\\mathbb{R}^3)$:
-
-    $$
-    \\langle \\lambda, \\varphi \\rangle = \\lambda_0 R \\int_0^{2\\pi} \\sin\\phi \\, \\varphi(R\\cos\\phi, R\\sin\\phi, 0) \\, \\mathrm{d}\\phi
-    $$
-
-    donde $\\lambda_0$ es la amplitud y $\\phi$ el ángulo azimutal. El anillo está parametrizado por $\\vec{r}(\\phi) = R(\\cos\\phi \\hat{x} + \\sin\\phi \\hat{y})$.
-
-    ### **Momento dipolar eléctrico ($\\vec{p}$)**
-
-    Para una distribución de carga, el momento dipolar es un funcional que actúa sobre funciones vectoriales de prueba $\\vec{\\psi} \\in [C^\\infty_c(\\mathbb{R}^3)]^3$:
-
-    $$
-    \\langle \\vec{p}, \\vec{\\psi} \\rangle = \\lambda_0 R^2 \\int_0^{2\\pi} \\sin\\phi \\, \\vec{\\psi}(R\\cos\\phi, R\\sin\\phi, 0) \\cdot (\\cos\\phi \\hat{x} + \\sin\\phi \\hat{y}) \\, \\mathrm{d}\\phi
-    $$
-
-    En el caso clásico (evaluando en $\\vec{\\psi} = \\mathbb{1}$):
-
-    $$
-    \\vec{p} = \\lambda_0 R^2 \\int_0^{2\\pi} \\sin\\phi (\\cos\\phi \\hat{x} + \\sin\\phi \\hat{y}) \\, \\mathrm{d}\\phi
-    $$
-
-    - **Componente $\\hat{x}$**:  
-    $\\langle p_x, \\varphi \\rangle \\propto \\int \\sin\\phi \\cos\\phi \\, \\mathrm{d}\\phi = 0$ (integral de función impar en $[0, 2\\pi]$).
-    
-    - **Componente $\\hat{y}$**:  
-    $\\langle p_y, \\varphi \\rangle = \\pi \\lambda_0 R^2 \\langle \\delta_y, \\varphi \\rangle$
-
-    donde $\\delta_y$ es la distribución delta concentrada en el eje $y$. Así:
-
-    $$
-    \\vec{p} = \\pi \\lambda_0 R^2 \\, \\hat{y} \\quad [\\text{C·m}]
-    $$
-
-    ### **Torque ($\\vec{\\tau}$)**
-
-    El campo eléctrico externo $\\vec{E} = E_0 \\hat{x}$ genera un torque:
-
-    $$
-    \\langle \\vec{\\tau}, \\vec{\\eta} \\rangle = -\\pi \\lambda_0 R^2 E_0 \\langle \\delta_z, \\eta_z \\rangle
-    $$
-
-    En forma vectorial:
-
-    $$
-    \\vec{\\tau} = -\\pi \\lambda_0 R^2 E_0 \\, \\hat{z} \\quad [\\text{N·m}]
-    $$
-
-    ### **Magnitudes físicas**
-    \\begin{align*}
-    |\\vec{E}| &= E_0 \\\\
-    |\\vec{p}| &= \\pi \\lambda_0 R^2 \\\\
-    |\\vec{\\tau}| &= \\pi \\lambda_0 R^2 E_0
-    \\end{align*}
-
-    ---
-
-    **Visualización**
-    - **Anillo**: Color según $\\lambda(\\phi)$ (rojo: $\\lambda > 0$, azul: $\\lambda < 0$)
-    - **Campo $\\vec{E}$**: Flechas verdes en $x>0$
-    - **Momento $\\vec{p}$**: Flecha roja en $y>0$
-    - **Torque $\\vec{\\tau}$**: Flecha magenta en $z<0$
-    """)
+    # Explicación física
+    with st.expander("📚 Explicación Física", expanded=True):
+        st.markdown(f"""
+        ### Física del Sistema:
+        
+        - **Distribución de carga**: λ(φ) = λ₀·sin(φ) - distribución sinusoidal alrededor del anillo
+        - **Momento dipolar**: p⃗ = πλ₀R² ŷ = {p_y:.4f} C·m
+        - **Torque**: τ⃗ = p⃗ × E⃗ = {tau_z:.4f} N·m en dirección z
+        - **Radio del anillo**: R = {R} m
+        
+        ### Ecuaciones clave:
+        ```
+        p_y = π·λ₀·R²
+        τ_z = -p_y·E₀
+        ```
+        
+        El torque hace que el anillo tienda a alinearse con el campo eléctrico externo.
+        """)
 
 # Llamar la función
 simular_anillo_campo_electrico()
