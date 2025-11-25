@@ -205,6 +205,7 @@ if seccion == "Inicio":
         st.subheader("👥 Equipo de Desarrollo")
         st.markdown("**🧑‍💻 Desarrolladora:** Victoria González")
         st.markdown("**👨‍🏫 Asesores:** Dr. Mauricio García Vergara, Dra. Mirna Villavicencio Torres")
+        st.markdown("**NOTA:** Por favor, reporta cualquier error o sugerencia al correo: vicky100459@gmail.com, te recomentamos utilizar el tema claro para mejor visualización, puedes modificarlo en las settings con los 3 puntos de la esquina superior derecha")
         st.markdown('</div>', unsafe_allow_html=True)
     
     # Sección de cómo usar la plataforma
