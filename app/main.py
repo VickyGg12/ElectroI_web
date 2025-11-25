@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 from simulations.coulomb import mostrar_simulacion_coulomb
 from simulations.puntualfield import campo_electrico_carga_puntual
 from simulations.potencial import potencial_electrostatico
@@ -135,31 +136,26 @@ seccion = st.sidebar.radio(
 st.sidebar.markdown("---")
 st.sidebar.header("🔧 Configuración")
 
-auto_refresh = st.sidebar.checkbox(
-    "Activar auto-refresh", 
-    value=True,
-    help="Mantiene la app activa mientras esta pestaña esté abierta"
-)
+st.sidebar.info("""
+**Para prevenir inactividad:**
 
-if auto_refresh:
-    refresh_interval = st.sidebar.slider(
-        "Intervalo (minutos)", 
-        min_value=5, 
-        max_value=15, 
-        value=10,  # 10 minutos por defecto - PUNTO ÓPTIMO
-        help="Tiempo entre auto-refresh automáticos"
-    )
-    st.auto_refresh(interval=refresh_interval * 60 * 1000)
-    
-    st.sidebar.success(f"🔄 Activado cada {refresh_interval} min")
-    st.sidebar.info("""
-    **📱 Mantén esta pestaña abierta**
-    El auto-refresh funciona solo en pestañas activas
-    """)
-    
-else:
-    st.sidebar.info("⏸️ Auto-refresh desactivado")
-    st.sidebar.warning("💡 La app podría entrar en modo inactivo")
+📱 **Visita la app regularmente**
+🔗 **Comparte el enlace con compañeros**  
+🔄 **Usa las simulaciones frecuentemente**
+
+*El tráfico real de usuarios es la mejor forma de mantener la app activa.*
+""")
+
+# Enlace directo para facilitar el acceso
+st.sidebar.markdown("**Enlace rápido:**")
+st.sidebar.code("electroi-web.streamlit.app")
+
+# Contador de actividad
+if 'page_views' not in st.session_state:
+    st.session_state.page_views = 0
+
+st.session_state.page_views += 1
+st.sidebar.metric("Visitas esta sesión", st.session_state.page_views)
 
 # Contenido principal
 if seccion == "Inicio":
