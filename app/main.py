@@ -138,17 +138,12 @@ st.sidebar.header("🔧 Configuración")
 
 st.sidebar.info("""
 **Para prevenir inactividad:**
-
-📱 **Visita la app regularmente**
-🔗 **Comparte el enlace con compañeros**  
-🔄 **Usa las simulaciones frecuentemente**
-
-*El tráfico real de usuarios es la mejor forma de mantener la app activa.*
+📱
 """)
 
 # Enlace directo para facilitar el acceso
 st.sidebar.markdown("**Enlace rápido:**")
-st.sidebar.code("electroi-web.streamlit.app")
+st.sidebar.code("https://electroweb-fciencias-unam.streamlit.app/")
 
 # Contador de actividad
 if 'page_views' not in st.session_state:
