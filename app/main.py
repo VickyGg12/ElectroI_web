@@ -132,6 +132,35 @@ seccion = st.sidebar.radio(
     ["Inicio", "Electrostática", "Magnetostática", "Ondas Electromagnéticas", "Circuitos Eléctricos"]
 )
 
+st.sidebar.markdown("---")
+st.sidebar.header("🔧 Configuración")
+
+auto_refresh = st.sidebar.checkbox(
+    "Activar auto-refresh", 
+    value=True,
+    help="Mantiene la app activa mientras esta pestaña esté abierta"
+)
+
+if auto_refresh:
+    refresh_interval = st.sidebar.slider(
+        "Intervalo (minutos)", 
+        min_value=5, 
+        max_value=15, 
+        value=10,  # 10 minutos por defecto - PUNTO ÓPTIMO
+        help="Tiempo entre auto-refresh automáticos"
+    )
+    st.auto_refresh(interval=refresh_interval * 60 * 1000)
+    
+    st.sidebar.success(f"🔄 Activado cada {refresh_interval} min")
+    st.sidebar.info("""
+    **📱 Mantén esta pestaña abierta**
+    El auto-refresh funciona solo en pestañas activas
+    """)
+    
+else:
+    st.sidebar.info("⏸️ Auto-refresh desactivado")
+    st.sidebar.warning("💡 La app podría entrar en modo inactivo")
+
 # Contenido principal
 if seccion == "Inicio":
     # Logos institucionales con emojis
